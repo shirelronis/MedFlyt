@@ -8,6 +8,9 @@ body {
         "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: url("./assets/background-icon.svg") no-repeat hsla(221, 39%, 11%, 1);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-image: url("./assets/background-icon.svg");
+    background-color: hsla(221, 39%, 11%, 1);
     color: #fff;
 }
