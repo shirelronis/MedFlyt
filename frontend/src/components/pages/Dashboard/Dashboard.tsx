@@ -61,6 +61,7 @@ function useDashboard(params: { year: number }) {
                 }
 
                 setState({ type: "Resolved", report: response.data, isRefreshing: false });
+
             })
             .catch(() => {
                 setState({ type: "Rejected", error: "Error" });
