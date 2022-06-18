@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 //DO NOT COMMIT YOUR .env FILE
-dotenv.config({ path:'.env'});
+dotenv.config({ path: `${__dirname}/../.env`});
 const config = {
     serviceName: process.env.SERVICENAME || 'node typescript postgres app',
     port: Number(process.env.PORT) || 3000,
