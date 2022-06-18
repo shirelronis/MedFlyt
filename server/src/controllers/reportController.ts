@@ -32,12 +32,21 @@ export const getReport = async (req: Request, res: Response) => {
             caregivers: []
         };
 
-        for ( let row of result.rows) {
-            report.caregivers.push({
-                name: row.caregiver_name,
-                patients: [row.patient_name]
-            })
-        }
+        result.rows.forEach((row) => {
+            let existing = report.caregivers.filter((caregiver => {
+                return caregiver.name == row.caregiver_name
+            }))
+            if (existing.length) {
+                let existingIndex = report.caregivers.indexOf(existing[0]);
+                report.caregivers[existingIndex].patients = report.caregivers[existingIndex].patients.concat(row.patient_name);
+            } else {
+                report.caregivers.push({
+                    name: row.caregiver_name,
+                    patients: [row.patient_name]
+                });
+            }
+        })
+
         res.status(200).json(report);
     } catch (error) {
         throw new Error(error.message);
