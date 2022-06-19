@@ -12,6 +12,7 @@ interface Report {
 
 export const getReport = async (req: Request, res: Response) => {
 
+    const {year} = req.params
     const sql = `
         SELECT
             caregiver.id      AS caregiver_id,
@@ -20,7 +21,7 @@ export const getReport = async (req: Request, res: Response) => {
             patient.name      AS patient_name,
             visit.date        AS visit_date
         FROM caregiver
-        JOIN visit ON visit.caregiver = caregiver.id
+        Join visit ON DATE_PART('year', visit.date) = ${year} AND visit.caregiver = caregiver.id
         JOIN patient ON patient.id = visit.patient
     `;
     
